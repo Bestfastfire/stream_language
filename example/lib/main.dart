@@ -1,5 +1,5 @@
-import 'package:flutter_stream_language/stream_language.dart';
 import 'package:flutter/material.dart';
+import 'package:stream_language/stream_language.dart';
 
 void main() => runApp(MyApp());
 

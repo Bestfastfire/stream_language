@@ -9,7 +9,7 @@ packages:
     source: hosted
     version: "2.3.0"
   bloc_pattern:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: bloc_pattern
       url: "https://pub.dartlang.org"
@@ -37,7 +37,7 @@ packages:
     source: hosted
     version: "1.14.11"
   country_pickers:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: country_pickers
       url: "https://pub.dartlang.org"
@@ -51,21 +51,21 @@ packages:
     source: hosted
     version: "0.1.2"
   devicelocale:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: devicelocale
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.0"
   firebase_core:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: firebase_core
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.0+9"
   firebase_database:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: firebase_database
       url: "https://pub.dartlang.org"
@@ -117,7 +117,7 @@ packages:
     source: hosted
     version: "2.0.5"
   rxdart:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: rxdart
       url: "https://pub.dartlang.org"
@@ -149,6 +149,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  stream_language:
+    dependency: "direct main"
+    description:
+      name: stream_language
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0"
   string_scanner:
     dependency: transitive
     description:
