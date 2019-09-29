@@ -1,6 +1,6 @@
 name: stream_language
-description: A new Flutter package.
-version: 0.0.4
+description: A simple way to support your Flutter application, which from firebase with realtime database supports multiple languages!
+version: 0.1.0
 author: Woton Sampaio <Wotoncf@gmail.com>
 homepage: https://github.com/Bestfastfire/Stream-Language
 

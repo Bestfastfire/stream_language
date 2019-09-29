@@ -46,7 +46,7 @@ class LanguageBloc implements BlocBase{
   Map<dynamic, dynamic> get currentDef => defaultRoute != null ? currentValue[defaultRoute] : [];
 
   static LanguageBloc _instance;
-  factory LanguageBloc({@required child, @required defaultLanguage, initialPrefix, defaultRoute}){
+  factory LanguageBloc({child, defaultLanguage, initialPrefix, defaultRoute}){
     _instance ??= LanguageBloc._internal(
         child: child,
         defaultLanguage: defaultLanguage,
