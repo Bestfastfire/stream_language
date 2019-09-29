@@ -1,8 +1,8 @@
 name: stream_language
 description: A new Flutter package.
-version: 0.0.2
+version: 0.0.4
 author: Woton Sampaio <Wotoncf@gmail.com>
-homepage: https://flutter.dev/
+homepage: https://github.com/Bestfastfire/Stream-Language
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
