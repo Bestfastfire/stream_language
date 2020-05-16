@@ -108,3 +108,9 @@ This will show an alert dialog like this (Language and flag listing is done auto
 To change the language programmatically, just call this method passing as the language prefix ex:
 
     languageBloc.changeLanguage('pt_BR');
+
+## Help Maintenance
+
+I've been maintaining quite many repos these days and burning out slowly. If you could help me cheer up, buying me a cup of coffee will make my life really happy and get much energy out of it.
+
+<a href="https://www.buymeacoffee.com/RtrHv1C" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>

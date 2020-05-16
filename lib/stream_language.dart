@@ -14,10 +14,11 @@ class StreamLanguage extends StatelessWidget {
   final languageBloc = LanguageBloc();
   final Widget Function(dynamic data, dynamic route, dynamic def) builder;
 
-  StreamLanguage({@required this.builder, this.screenRoute = const [], this.onChange}){
-   if(onChange != null){
-     languageBloc.outStreamList.listen((v) => onChange());
-   }
+  StreamLanguage(
+      {@required this.builder, this.screenRoute = const [], this.onChange}) {
+    if (onChange != null) {
+      languageBloc.outStreamList.listen((v) => onChange());
+    }
   }
 
   @override

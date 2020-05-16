@@ -1,11 +1,13 @@
-## [0.0.1] - TODO: Add release date.
+## [0.1.2+1] - Fix dependencies.
 
-* TODO: Describe initial release.
+## [0.1.2]
+
+* TODO: Added function "onChange" in StreamLanguage, it called when current language is changed
 
 ## [0.1.0] - TODO: Add release date.
 
 * Fixing bugs
 
-## [0.1.2]
+## [0.0.1] - TODO: Add release date.
 
-* TODO: Added function "onChange" in StreamLanguage, it called when current language is changed
+* TODO: Describe initial release.
