@@ -23,16 +23,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final language = LanguageBloc(
+  final language = LanguageController(
       child: 'languages',
-      defaultLanguage: 'pt_BR',
-      defaultRoute: 'default'
+      defaultPrefix: 'pt_BR',
+      commonRoute: 'default'
   );
 
   @override
   Widget build(BuildContext context) {
     return FirstLanguageStart(
-      future: language.init(),
+      control: language,
       builder: (c){
         return StreamLanguage(
           screenRoute: ['screen-1'],
@@ -42,17 +42,17 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             body: Center(
               child: RaisedButton(
-                  child: Text(route['btn']),
-                  onPressed: () => language.showAlertChangeLanguage(
-                      context: context,
-                      title: def['change-language']['title'],
-                      btnNegative: def['change-language']['btn-negative']
-                  )
-              ),
-            ), // This trailing comma makes auto-formatting nicer for build methods.
-          ),
+                child: Text(route['btn']),
+                onPressed: () => language.showAlertChangeLanguage(
+                    context: context,
+                    title: def['change-language']['title'],
+                    btnNegative: def['change-language']['btn-negative']
+                )
+              )
+            ) // This trailing comma makes auto-formatting nicer for build methods.
+          )
         );
-      },
+      }
     );
   }
 }
