@@ -2,6 +2,7 @@ library stream_language;
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:country_pickers/country_pickers.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:devicelocale/devicelocale.dart';
 import 'package:country_pickers/country.dart';
 import 'package:flutter/material.dart';
@@ -118,7 +119,12 @@ class LanguageController implements _BlocBase {
   }
 
   Future<LanguageController> _setDeviceLanguage() async {
-    await changeLanguage(await Devicelocale.currentLocale);
+    if(kIsWeb)
+      await changeLanguage(defaultPrefix);
+
+    else
+      await changeLanguage(await Devicelocale.currentLocale);
+
     return this;
   }
 

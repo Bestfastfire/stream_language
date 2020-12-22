@@ -1,3 +1,7 @@
+## [1.0.1+1] - Fix bugs
+
+## [1.0.1] - Fix dependencies and web version
+
 ## [1.0.0] - Fix bugs and texts
 
 ## [0.1.2+1] - Fix dependencies.
