@@ -1,3 +1,5 @@
+## [1.0.1+2] - Format
+
 ## [1.0.1+1] - Fix bugs
 
 ## [1.0.1] - Fix dependencies and web version

@@ -119,9 +119,8 @@ class LanguageController implements _BlocBase {
   }
 
   Future<LanguageController> _setDeviceLanguage() async {
-    if(kIsWeb)
+    if (kIsWeb)
       await changeLanguage(defaultPrefix);
-
     else
       await changeLanguage(await Devicelocale.currentLocale);
 
