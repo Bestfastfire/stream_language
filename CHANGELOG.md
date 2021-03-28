@@ -1,3 +1,5 @@
+## [1.0.1+3] - Update `firebase_database`
+
 ## [1.0.1+2] - Format
 
 ## [1.0.1+1] - Fix bugs
