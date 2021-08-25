@@ -1,6 +1,6 @@
 name: stream_language
 description: A simple way to support your Flutter application, which from firebase with realtime database supports multiple languages!
-version: 1.0.1+4
+version: 1.0.1+5
 homepage: https://github.com/Bestfastfire/stream_language
 
 environment:
@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   firebase_database: ^7.2.0
-  country_pickers: ^1.3.0
+  country_pickers: ^2.0.0
   devicelocale: ^0.4.2
   rxdart: ^0.27.1
 
