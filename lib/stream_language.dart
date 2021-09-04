@@ -189,7 +189,8 @@ class LanguageController implements _BlocBase {
                           : Colors.transparent,
                       child: ListTile(
                         leading: CountryPickerUtils.getDefaultFlagImage(
-                            Country(isoCode: out[index]['iso_code'])),
+                            CountryPickerUtils.getCountryByIsoCode(
+                                out[index]['iso_code'])),
                         selected: currentValue['config']['prefix'] ==
                             out[index]['prefix'],
                         title: Text(
