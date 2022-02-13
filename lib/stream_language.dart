@@ -4,13 +4,12 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:country_pickers/country_pickers.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:devicelocale/devicelocale.dart';
-import 'package:country_pickers/country.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
 class StreamLanguage extends StatelessWidget {
   /// On change language
-  final Function onChange;
+  final Function? onChange;
 
   /// route in json, ex:
   /// {
@@ -23,15 +22,15 @@ class StreamLanguage extends StatelessWidget {
   final List<String> screenRoute;
 
   /// Controller
-  final control = LanguageController();
+  final control = LanguageController(defaultPrefix: '', child: '');
 
   /// Builder widget
   final Widget Function(dynamic data, dynamic route, dynamic def) builder;
 
   StreamLanguage(
-      {@required this.builder, this.screenRoute = const [], this.onChange}) {
+      {required this.builder, this.screenRoute = const [], this.onChange}) {
     if (onChange != null) {
-      control.outStreamList.listen((v) => onChange());
+      control.outStreamList.listen((v) => onChange!());
     }
   }
 
@@ -41,13 +40,14 @@ class StreamLanguage extends StatelessWidget {
       initialData: control.currentValue,
       stream: control.outStreamList,
       builder: (context, snapshot) {
-        dynamic screenRoute = snapshot.data;
+        dynamic screenRoute = snapshot.data as dynamic;
         this.screenRoute.forEach((v) => screenRoute = screenRoute[v]);
+
         return builder(
             snapshot.data,
             screenRoute,
             control.commonRoute != null
-                ? snapshot.data[control.commonRoute]
+                ? (snapshot.data as dynamic)[control.commonRoute]
                 : []);
       },
     );
@@ -60,13 +60,13 @@ abstract class _BlocBase {
 
 class LanguageController implements _BlocBase {
   /// Last prefix selected
-  String lastPrefix;
+  String? lastPrefix;
 
   /// Child in RT Database
   final String child;
 
   /// Route common in to screens
-  final String commonRoute;
+  final String? commonRoute;
 
   /// Default prefix
   final String defaultPrefix;
@@ -87,32 +87,38 @@ class LanguageController implements _BlocBase {
   Map<dynamic, dynamic> get currentCommon =>
       commonRoute != null ? currentValue[commonRoute] : [];
 
-  static LanguageController _instance;
+  static LanguageController? _instance;
   factory LanguageController(
-      {child, defaultPrefix, initialPrefix, commonRoute}) {
-    _instance ??= LanguageController._internal(
+      {required String child,
+      required String defaultPrefix,
+      String? initialPrefix,
+      String? commonRoute}) {
+    return _instance ??= LanguageController._internal(
         child: child,
         defaultPrefix: defaultPrefix,
-        lastPrefix: initialPrefix,
+        lastPrefix: initialPrefix ?? defaultPrefix,
         commonRoute: commonRoute);
-    return _instance;
   }
 
   LanguageController._internal(
-      {this.child, this.defaultPrefix, this.lastPrefix, this.commonRoute});
+      {required this.child,
+      required this.defaultPrefix,
+      this.lastPrefix,
+      this.commonRoute});
 
   /// Required called before all to load
   Future<void> init() async {
     this.lastPrefix ??= defaultPrefix;
     _languageDb.sink.add(
-        (await FirebaseDatabase.instance.reference().child(child).once())
-            .value);
+        (await FirebaseDatabase.instance.ref().child(child).once())
+            .snapshot
+            .value as dynamic);
 
     FirebaseDatabase.instance
-        .reference()
+        .ref()
         .child(child)
         .onValue
-        .listen((v) => _languageDb.sink.add(v.snapshot.value));
+        .listen((v) => _languageDb.sink.add(v.snapshot.value as dynamic));
     _languageDb.listen((v) => _languageList.sink.add(v[lastPrefix]));
 
     await _setDeviceLanguage();
@@ -122,7 +128,7 @@ class LanguageController implements _BlocBase {
     if (kIsWeb)
       await changeLanguage(defaultPrefix);
     else
-      await changeLanguage(await Devicelocale.currentLocale);
+      await changeLanguage(await Devicelocale.currentLocale ?? defaultPrefix);
 
     return this;
   }
@@ -161,9 +167,9 @@ class LanguageController implements _BlocBase {
 
   /// Show alert to change language
   Future<dynamic> showAlertChangeLanguage(
-      {@required context,
-      @required String title,
-      @required String btnNegative}) async {
+      {required BuildContext context,
+      required String title,
+      required String btnNegative}) async {
     List<Map<dynamic, dynamic>> out = this.getListLanguage();
 
     return await showDialog(
@@ -171,10 +177,9 @@ class LanguageController implements _BlocBase {
         builder: (context) => AlertDialog(
               title: Text(title),
               actions: <Widget>[
-                FlatButton(
-                  child: Text(btnNegative),
-                  onPressed: () => Navigator.pop(context),
-                ),
+                TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: Text(btnNegative)),
               ],
               content: Container(
                 width: MediaQuery.of(context).size.height * 0.8,
@@ -225,13 +230,13 @@ class FirstLanguageStart extends StatelessWidget {
   final LanguageController control;
 
   /// Widget to show while init
-  final Widget loadWidget;
+  final Widget? loadWidget;
 
   /// Widget builder
   final Function(BuildContext context) builder;
 
   FirstLanguageStart(
-      {@required this.control, @required this.builder, this.loadWidget});
+      {required this.control, required this.builder, this.loadWidget});
 
   @override
   Widget build(BuildContext context) {
@@ -241,6 +246,7 @@ class FirstLanguageStart extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.done) {
             return builder(context);
           }
+
           return loadWidget ?? CircularProgressIndicator();
         });
   }

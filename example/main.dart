@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:stream_language/stream_language.dart';
+import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
@@ -8,12 +8,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(),
-    );
+        title: 'Flutter Demo',
+        theme: ThemeData(primarySwatch: Colors.blue),
+        home: MyHomePage());
   }
 }
 
@@ -34,11 +31,9 @@ class _MyHomePageState extends State<MyHomePage> {
           return StreamLanguage(
               screenRoute: ['screen-1'],
               builder: (data, route, def) => Scaffold(
-                  appBar: AppBar(
-                    title: Text(route['title']),
-                  ),
+                  appBar: AppBar(title: Text(route['title'])),
                   body: Center(
-                      child: RaisedButton(
+                      child: ElevatedButton(
                           child: Text(route['btn']),
                           onPressed: () => language.showAlertChangeLanguage(
                               context: context,

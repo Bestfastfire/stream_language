@@ -1,3 +1,5 @@
+## [1.1.0] - Null Safety.
+
 ## [1.0.1+5] - Updated dependencies.
 
 ## [1.0.1+3] - Update `firebase_database`
