@@ -110,8 +110,7 @@ class LanguageController implements _BlocBase {
   Future<void> init() async {
     this.lastPrefix ??= defaultPrefix;
     _languageDb.sink.add(
-        (await FirebaseDatabase.instance.ref().child(child).once())
-            .snapshot
+        (await FirebaseDatabase.instance.ref().child(child).get())
             .value as dynamic);
 
     FirebaseDatabase.instance
